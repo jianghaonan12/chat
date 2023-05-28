@@ -7,6 +7,6 @@ import (
 
 func Router() *gin.Engine {
 	r := gin.Default()
-	r.GET("/", service.GetIndex)
+	r.POST("/user", service.GetUserInfo)
 	return r
 }

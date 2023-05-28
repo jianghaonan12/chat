@@ -21,6 +21,6 @@ type UserBasic struct {
 	DeviceInfo    string
 }
 
-func (table *UserBasic) TableName() string {
-	return "user_basic"
-}
+//func (table *UserBasic) TableName() string {
+//	return "user_basic"
+//}
