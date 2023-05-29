@@ -7,6 +7,11 @@ import (
 
 func Router() *gin.Engine {
 	r := gin.Default()
-	r.POST("/user", service.GetUserInfo)
+	user := r.Group("/user")
+	{
+		user.POST("/select", service.GetUserInfo)
+		user.POST("/save", service.CreateUserInfo)
+		user.POST("/update", service.UpdateUserInfo)
+	}
 	return r
 }

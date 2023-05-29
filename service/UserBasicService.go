@@ -17,3 +17,21 @@ func GetUserInfo(c *gin.Context) {
 		"data": userF,
 	})
 }
+func CreateUserInfo(c *gin.Context) {
+	userVo := new(models.UserBasic)
+	c.ShouldBindBodyWith(userVo, binding.JSON)
+	user := dao.CreateUserInfo(userVo)
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "成功",
+		"data": user,
+	})
+}
+func UpdateUserInfo(c *gin.Context) {
+	userVo := new(models.UserBasic)
+	c.ShouldBindBodyWith(userVo, binding.JSON)
+	user := dao.UpdateUserInfo(userVo)
+	c.JSON(http.StatusOK, gin.H{
+		"msg":  "成功",
+		"data": user,
+	})
+}
