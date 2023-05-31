@@ -13,7 +13,7 @@ var DB = utils.DB
 
 func GetUserInfo(userVo *models.UserBasic) *models.UserBasic {
 	user := new(models.UserBasic)
-	DB.Debug().Table("user_basic").Where("name", userVo.Name).Scan(user)
+	DB.Debug().Table("user_basic").Where("id", userVo.ID).Find(user)
 	return user
 }
 
@@ -30,7 +30,8 @@ func CreateUserInfo(userVo *models.UserBasic) *models.UserBasic {
 *
 更新用户信息
 */
-func UpdateUserInfo(userVo []*models.UserBasic) bool {
-	DB.Debug().Table("user_basic").Updates(userVo)
-	return true
+func UpdateUserInfo(user *models.UserBasic) *models.UserBasic {
+	DB.Debug().Model(user).Update("name", user.Name)
+	return user
+
 }

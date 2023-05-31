@@ -11,10 +11,10 @@ import (
 func GetUserInfo(c *gin.Context) {
 	userVo := new(models.UserBasic)
 	c.ShouldBindBodyWith(userVo, binding.JSON)
-	userF := dao.GetUserInfo(userVo)
+	userInfo := dao.GetUserInfo(userVo)
 	c.JSON(http.StatusOK, gin.H{
 		"msg":  "成功",
-		"data": userF,
+		"data": userInfo,
 	})
 }
 func CreateUserInfo(c *gin.Context) {
@@ -27,11 +27,12 @@ func CreateUserInfo(c *gin.Context) {
 	})
 }
 func UpdateUserInfo(c *gin.Context) {
-	userVo := new(models.UserBasic)
-	c.ShouldBindBodyWith(userVo, binding.JSON)
-	user := dao.UpdateUserInfo(userVo)
+	user := new(models.UserBasic)
+	//c.Header()
+	c.ShouldBindBodyWith(user, binding.JSON)
+	userInfo := dao.UpdateUserInfo(user)
 	c.JSON(http.StatusOK, gin.H{
 		"msg":  "成功",
-		"data": user,
+		"data": userInfo,
 	})
 }
